@@ -3,7 +3,7 @@ import itertools
 from bson.objectid import ObjectId
 from uengine.models.submodel import StorableSubmodel, ShardedSubmodel
 from uengine.errors import WrongSubmodel, MissingSubmodel, InputDataError, IntegrityError
-from .mongo_mock import MongoMockTest
+from uengine.tests.mongo_mock import MongoMockTest
 
 
 class _BaseTestSubmodel(MongoMockTest):
@@ -13,6 +13,8 @@ class _BaseTestSubmodel(MongoMockTest):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        if cls.CLASS is None:
+            return
 
         class TestBaseModel(cls.CLASS):  # pylint: disable=inherit-non-class
             FIELDS = [
@@ -35,6 +37,8 @@ class _BaseTestSubmodel(MongoMockTest):
         cls.submodel2 = Submodel2
 
     def test_wrong_input(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         with self.assertRaises(WrongSubmodel):
             self.submodel1(_id=ObjectId(), field1="value", submodel="wrong")
         with self.assertRaises(MissingSubmodel):
@@ -47,6 +51,8 @@ class _BaseTestSubmodel(MongoMockTest):
             obj.save()
 
     def test_submodel_field(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         obj = self.submodel1()
         self.assertTrue(hasattr(obj, "submodel"))
         self.assertEqual(obj.submodel, self.submodel1.SUBMODEL)
@@ -57,6 +63,8 @@ class _BaseTestSubmodel(MongoMockTest):
         self.assertEqual(db_obj.submodel, self.submodel1.SUBMODEL)
 
     def test_inheritance(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         class Submodel1(self.base_model):
             SUBMODEL = "submodel1"
 
@@ -68,6 +76,8 @@ class _BaseTestSubmodel(MongoMockTest):
         self.assertEqual(Submodel1.SUBMODEL, Submodel1_1.SUBMODEL)
 
     def test_abstract(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         with self.assertRaises(IntegrityError):
             self.base_model()
 
@@ -92,6 +102,8 @@ class _BaseTestSubmodel(MongoMockTest):
         return objs1, objs2
 
     def test_isolation_find(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         objs1, objs2 = self._create_objs()
         self.assertCountEqual(
             self.submodel1.find().all(),
@@ -116,6 +128,8 @@ class _BaseTestSubmodel(MongoMockTest):
         )
 
     def test_isolation_update(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         objs1, objs2 = self._create_objs()
         obj1 = objs2[0]
         obj1.field2 = "new_value"
@@ -142,6 +156,8 @@ class _BaseTestSubmodel(MongoMockTest):
         )
 
     def test_isolation_destroy(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         objs1, objs2 = self._create_objs()
         to_destroy = objs2.pop()
         to_keep = objs1[-1]
@@ -169,6 +185,8 @@ class _BaseTestSubmodel(MongoMockTest):
         )
 
     def test_double_register(self):
+        if self.CLASS is None:
+            self.skipTest("Abstract")
         with self.assertRaises(IntegrityError):
             class NewSubmodel(self.base_model):
                 SUBMODEL = self.submodel2.SUBMODEL
