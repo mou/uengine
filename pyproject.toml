@@ -17,6 +17,7 @@ cachelib = "^0.5.0"
 pylint = "^2.12.2"
 mongomock = "^3.23.0"
 pytest = "^6.2.5"
+mtprof = "^0.0.3"
 
 [tool.poetry.scripts]
 uengine = "uengine.__main__:main"

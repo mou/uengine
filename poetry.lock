@@ -241,6 +241,14 @@ sentinels = "*"
 six = "*"
 
 [[package]]
+name = "mtprof"
+version = "0.0.3"
+description = "Thread-aware profiler"
+category = "dev"
+optional = false
+python-versions = ">=3"
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -481,7 +489,7 @@ python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "528f147fe7804d569957a0f68f0a5ae20963f5f35008d30e9cffb4d415af26db"
+content-hash = "fb3c711b67990e3c684c054a81dcb0e8f7efc15886ed50ee962824536ec216df"
 
 [metadata.files]
 appnope = [
@@ -669,6 +677,10 @@ mccabe = [
 mongomock = [
     {file = "mongomock-3.23.0-py2.py3-none-any.whl", hash = "sha256:01ce0c4eb02b2eced0a30882412444eaf6de27a90f2502bee64e04e3b8ecdc90"},
     {file = "mongomock-3.23.0.tar.gz", hash = "sha256:d9945e7c87c221aed47c6c10708376351a5f5ee48060943c56ba195be425b0dd"},
+]
+mtprof = [
+    {file = "mtprof-0.0.3-py2.py3-none-any.whl", hash = "sha256:0b677ae7b54a79711016702818b17df064ca9aa494bd74bac65121aa581c6a24"},
+    {file = "mtprof-0.0.3.tar.gz", hash = "sha256:6fb7f30dc8cabd82c6a2df5ae8c1418bc8b81bed9994adef8ce1383a04396720"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
