@@ -66,11 +66,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1642215333,
-        "narHash": "sha256-hOs6lr62ITT8gAnpj5C248K0PW4IrCuXzgoan+VUgiM=",
+        "lastModified": 1642754491,
+        "narHash": "sha256-rf1GulrkwS9QdyDve+vJLgGmL7NpXaSXq3JZr/pfz44=",
         "owner": "nix-community",
         "repo": "poetry2nix",
-        "rev": "7b5c8e3b838d534e0d4dcaa6bbe6530086ebf407",
+        "rev": "e3fff9ae959678e1d03a961db59dc251cd279ce3",
         "type": "github"
       },
       "original": {
